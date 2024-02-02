@@ -109,11 +109,15 @@ class LimitedBookshelf extends Bookshelf {
 }
 
 let noBocchanBookshelf = new RejectedBocchanBookshelf()
-noBocchanBookshelf.addBook(new Book("坊っちゃん", 520))
+if (!noBocchanBookshelf.addBook(new Book("坊っちゃん", 520))) {
+  console.log(`新しい本を追加できませんでした。今の本の数：${noBocchanBookshelf.size()}`) // => 新しい本を追加できませんでした。今の本の数：0
+}
 console.log(noBocchanBookshelf.findBookByTitle("坊っちゃん")) // 「坊っちゃん」なので、addBook()で本棚に追加されなかった
 
 let smallBookshelf = new ThinBookshelf()
-smallBookshelf.addBook(new Book("厚い本", 20))
+if (!smallBookshelf.addBook(new Book("厚い本", 20))) {
+  console.log(`新しい本を追加できませんでした。今の本の数：${smallBookshelf.size()}`) // => 新しい本を追加できませんでした。今の本の数：0
+}
 console.log(smallBookshelf.findBookByTitle("厚い本")) // 20ページ以上の本なので、addBook()で本棚に追加されなかった
 smallBookshelf.addBook(new Book("薄い本", 19))
 console.log(smallBookshelf.findBookByTitle("薄い本")) // 20ページ未満の本なので、addBook()で本棚に追加された
@@ -125,4 +129,4 @@ limitedBookshelf.addBook(new Book("門", 345))
 console.log(limitedBookshelf.getRejectionCount()) // ３冊入る本棚なので、ここまでの拒否回数は０
 limitedBookshelf.addBook(new Book("三四郎", 358))
 limitedBookshelf.addBook(new Book("それから", 888))
-console.log(limitedBookshelf.getRejectionCount()) // ２冊拒否されたので今日費回数は２
+console.log(limitedBookshelf.getRejectionCount()) // ２冊拒否されたので拒否回数は２

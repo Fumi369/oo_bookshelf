@@ -64,19 +64,17 @@ class RentalBookshelf extends Bookshelf {
     const rentalBook = this.findBookByTitle(book)
     if (rentalBook && !this.isRented(book)) {
       this.rentedBooks.add(book)
-      console.log(`${book}が貸し出されました`)
-    } else {
-      console.log(`${book}は貸し出しできません`)
+      return true
     }
+    return false
   }
 
   returnBook(book) {
     if (this.isRented(book)) {
       this.rentedBooks.delete(book)
-      console.log(`${book}が返却されました`)
-    } else {
-      console.log(`${book}は返却できません`)
+      return true
     }
+    return false
   }
 
   listRentedBooks() {
@@ -102,16 +100,34 @@ rentalBookshelf.addBook(book2)
 rentalBookshelf.addBook(book3)
 
 // 本の貸し出し
-rentalBookshelf.rentBook("こころ") // こころが貸し出されました
-rentalBookshelf.rentBook("三四郎") // 三四郎は貸し出しできません
+if (rentalBookshelf.rentBook("こころ")) {
+  console.log(`本が貸し出されました`)
+} else {
+  console.log("この本は貸し出しできません")
+}
+
+if (rentalBookshelf.rentBook("三四郎")) {
+  console.log(`本が貸し出されました`)
+} else {
+  console.log("この本は貸し出しできません")
+}
 
 // 本の返却
-rentalBookshelf.returnBook("こころ") // こころが返却されました
-rentalBookshelf.returnBook("三四郎") // 三四郎は返却できません
+if (rentalBookshelf.returnBook("こころ")) {
+  console.log("本が返却されました")
+} else {
+  console.log("この本は返却できません")
+}
+
+if (rentalBookshelf.returnBook("三四郎")) {
+  console.log("本が返却されました")
+} else {
+  console.log("この本は返却できません")
+}
 
 // 貸し出し中の本の一覧
-rentalBookshelf.rentBook("坊っちゃん") // 坊っちゃんが貸し出されました
-rentalBookshelf.rentBook("吾輩は猫である") // 吾輩は猫であるが貸し出されました
+rentalBookshelf.rentBook("坊っちゃん")
+rentalBookshelf.rentBook("吾輩は猫である")
 console.log("貸し出し中の本：", rentalBookshelf.listRentedBooks()) // Set(2) { '坊っちゃん', '吾輩は猫である' }
 
 // 本の貸し出し状況
