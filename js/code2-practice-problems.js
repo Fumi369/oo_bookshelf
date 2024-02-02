@@ -16,7 +16,7 @@ class Counter {
   }
 
   resetValue() {
-    return (this.count = 0)
+    this.count = 0
   }
 }
 

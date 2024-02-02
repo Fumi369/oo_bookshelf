@@ -86,13 +86,13 @@ pointCalculator.addResult(new Result("佐藤", 75))
 // 全員のpointの合計を求める
 console.log(pointCalculator.sumPoints()) // => 247
 
-// // 全員のpointの平均を求める
+// 全員のpointの平均を求める
 console.log(pointCalculator.averagePoints()) // => 82.33333333333333
 
-// // 最高得点の人を検索してnameを得る
+// 最高得点の人を検索してnameを得る
 console.log(pointCalculator.findMostPointsHolder()) // 田中
 
-// // 新たな結果 {name: '阿部', point: 95}を後から追加して上記を改めて計算する
+// 新たな結果 {name: '阿部', point: 95}を後から追加して上記を改めて計算する
 pointCalculator.addResult(new Result("阿部", 95))
 console.log(pointCalculator.sumPoints()) // => 342
 console.log(pointCalculator.averagePoints()) // => 85.5
